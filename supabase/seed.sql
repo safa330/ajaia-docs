@@ -1,14 +1,14 @@
 -- Demo content. Run in the Supabase SQL editor AFTER creating the three demo users
--- (alice@example.com, bob@example.com, carol@example.com) under Authentication -> Users.
+-- (alice@hotmail.com, bob@hotmail.com, carol@hotmail.com) under Authentication -> Users.
 -- Creating a user fires on_auth_user_created, which creates the matching profile row.
 
 update public.profiles
 set display_name = initcap(split_part(email, '@', 1))
-where email in ('alice@example.com', 'bob@example.com', 'carol@example.com');
+where email in ('alice@hotmail.com', 'bob@hotmail.com', 'carol@hotmail.com');
 
 -- Alice owns a plan and shares it with Bob as an editor.
-with alice as (select id from public.profiles where email = 'alice@example.com'),
-     bob as (select id from public.profiles where email = 'bob@example.com'),
+with alice as (select id from public.profiles where email = 'alice@hotmail.com'),
+     bob as (select id from public.profiles where email = 'bob@hotmail.com'),
      doc as (
        insert into public.documents (owner_id, title, content)
        select alice.id, 'Q4 launch plan', '{"type":"doc","content":[
@@ -31,8 +31,8 @@ insert into public.document_shares (document_id, user_id, role)
 select doc.id, bob.id, 'editor' from doc, bob;
 
 -- Bob owns meeting notes and shares them with Alice as a viewer (read-only).
-with alice as (select id from public.profiles where email = 'alice@example.com'),
-     bob as (select id from public.profiles where email = 'bob@example.com'),
+with alice as (select id from public.profiles where email = 'alice@hotmail.com'),
+     bob as (select id from public.profiles where email = 'bob@hotmail.com'),
      doc as (
        insert into public.documents (owner_id, title, content)
        select bob.id, 'Weekly sync notes', '{"type":"doc","content":[

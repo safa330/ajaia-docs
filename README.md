@@ -10,16 +10,16 @@ Create and format documents in the browser, import a file as a new document, and
 
 | User  | Email               | Seeded content |
 |-------|---------------------|----------------|
-| Alice | `alice@example.com` | Owns "Q4 launch plan" (shared with Bob as editor); can view Bob's "Weekly sync notes" |
-| Bob   | `bob@example.com`   | Owns "Weekly sync notes" (shared with Alice as viewer); can edit Alice's plan |
-| Carol | `carol@example.com` | No documents: good for testing sharing from scratch |
+| Alice | `alice@hotmail.com` | Owns "Q4 launch plan" (shared with Bob as editor); can view Bob's "Weekly sync notes" |
+| Bob   | `bob@hotmail.com`   | Owns "Weekly sync notes" (shared with Alice as viewer); can edit Alice's plan |
+| Carol | `carol@hotmail.com` | No documents: good for testing sharing from scratch |
 
-Password for all three: `ajaia-demo-2026` (public demo accounts; the login screen also has "Use" buttons).
+Password for all three: `ajaia-demo-2026` (public demo accounts; the login screen also has "Use" buttons). The accounts exist only in this project: they were created with auto-confirm, and the app never sends email to them.
 
 Suggested review path:
 1. Sign in as **Alice**, create a document, format it, rename it, refresh the page: it reopens with formatting intact.
 2. **Import file** a `.md`, `.txt` or `.docx` file: it becomes a new document you own.
-3. Click **Share**, add `carol@example.com` as **Viewer** (or Editor).
+3. Click **Share**, add `carol@hotmail.com` as **Viewer** (or Editor).
 4. In a second browser or private window, sign in as **Carol**: the document is under **Shared with me**, read-only for a viewer.
 5. Change Carol to **Editor** and let both users edit: a stale save shows a conflict banner instead of silently overwriting the other person's work.
 
@@ -44,7 +44,7 @@ npm run dev                  # http://localhost:5173
 
 Database setup (Supabase dashboard):
 1. **SQL Editor:** run `supabase/migrations/0001_init.sql`.
-2. **Authentication > Users > Add user:** create `alice@example.com`, `bob@example.com` and `carol@example.com` with the demo password and "Auto Confirm User" checked. A trigger creates each profile.
+2. **Authentication > Users > Add user:** create `alice@hotmail.com`, `bob@hotmail.com` and `carol@hotmail.com` with the demo password and "Auto Confirm User" checked. A trigger creates each profile.
 3. **SQL Editor:** run `supabase/seed.sql` for the demo documents (optional).
 
 ## Tests
