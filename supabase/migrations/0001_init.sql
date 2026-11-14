@@ -189,3 +189,6 @@ grant select, delete on public.document_shares to authenticated;
 
 revoke execute on function public.share_document(uuid, text, text) from public, anon;
 grant execute on function public.share_document(uuid, text, text) to authenticated;
+-- Policies call these helpers as the signed-in user, so grant them explicitly
+-- instead of relying on project-level default privileges.
+grant execute on function public.is_document_owner(uuid), public.shared_role(uuid) to authenticated;
