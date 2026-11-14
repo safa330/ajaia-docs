@@ -33,8 +33,8 @@ These came up while reviewing generated code and configuration, before anything 
 
 - **Automated:** 16 tests. 11 run the real migration in an in-process Postgres (PGlite) as three users, checking reads, edits, sharing, deletion, stale saves, revocation and anonymous access. 5 cover file import and validation. Plus a TypeScript type check and a production build.
 - **Live API:** an anonymous request to the documents table on the deployed project returns `permission denied`.
-- **Manual, end to end:** (pending)
-- **UX:** (pending)
+- **Manual, end to end:** I tested the main flows by hand in two browser windows, signed in as Alice and as Carol: create, rename, format, and refresh (formatting kept); importing the sample `.docx` and `.md` files; sharing as viewer (read-only, no toolbar); switching to editor; simultaneous edits (conflict banner); and removing access. Everything worked. Unsupported files such as PDFs cannot be picked, because the file dialog only offers the supported types; the error path for them is covered by unit tests.
+- **UX:** the same run checked that every state is visible in the interface: save status, the view-only banner, the conflict banner with its two choices, and the role badges in the document list. No changes were needed after the manual run.
 
 ## Time
 
