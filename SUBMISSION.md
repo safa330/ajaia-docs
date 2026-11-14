@@ -8,7 +8,7 @@
 | What | Where |
 |---|---|
 | Live app | https://safa330.github.io/ajaia-docs/ |
-| Walkthrough video | see `VIDEO_URL.txt` |
+| Walkthrough video | https://drive.google.com/file/d/1RtwQdRcym6QEghnO1IGvMa1_lSIWKTYc/view?usp=sharing |
 | Source repository | https://github.com/safa330/ajaia-docs |
 
 ## Demo accounts
@@ -31,6 +31,7 @@ To see sharing from both sides, sign in as two users in two browsers (or a norma
 | `AI_WORKFLOW.md` | AI workflow note: tools, where AI helped, what was changed or rejected, how it was verified |
 | `LIVE_URL.txt` | Live product URL |
 | `VIDEO_URL.txt` | Walkthrough video URL |
+| `Ekran Kaydı 2026-11-14 18.21.16.mov` | The walkthrough video file (same as the link) |
 | `ajaia-docs-source.zip` | Full source code (same as the GitHub repository) |
 
 ## Status
@@ -55,4 +56,4 @@ To see sharing from both sides, sign in as two users in two browsers (or a norma
 
 ## Time
 
-About four hours, inside the 240-minute timer (started 17:05 Istanbul time, UTC+3).
+About two hours in total. I started at 17:05 Istanbul time (UTC+3); the app, tests, deployment, documents and walkthrough were finished by about 19:00, inside the 240-minute timer.

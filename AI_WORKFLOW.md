@@ -38,4 +38,4 @@ These came up while reviewing generated code and configuration, before anything 
 
 ## Time
 
-About four hours, inside the 240-minute timer (started 17:05 Istanbul time, UTC+3).
+About two hours in total. I started at 17:05 Istanbul time (UTC+3); the app, tests, deployment, documents and walkthrough were finished by about 19:00, inside the 240-minute timer.
