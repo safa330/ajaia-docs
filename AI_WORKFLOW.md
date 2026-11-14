@@ -8,7 +8,7 @@
 ## How the work was split
 
 - **Claude proposed and built; I reviewed and decided.** I approved the plan and scope cuts, approved creating the Supabase project and a public GitHub repository, created the demo accounts myself, tested the main flows by hand, and recorded the walkthrough.
-- I chose Supabase with Row Level Security partly because I use it in my own project (11 tables, 60+ RLS policies), so I can read and judge the generated SQL instead of trusting it.
+- Supabase with Row Level Security was picked because it is the stack I know best from my own project (11 tables, 60+ RLS policies).
 
 ## Where AI materially sped things up
 
@@ -19,12 +19,12 @@
 
 ## What was changed or rejected
 
-These came up while reviewing generated code and configuration, before anything shipped:
+Some of these were caught by Claude's own design review before the code was written; the others came from checking the output (the build and the deployed configuration). Where possible, a test covers the fix:
 
-1. **Ownership takeover.** A simple update policy (`owner or editor may update`) would also let an editor set `owner_id` to themselves. Changed to column-level privileges (signed-in users can only write `title` and `content`) plus a trigger. A test covers it.
+1. **Ownership takeover.** The obvious update policy (`owner or editor may update`) would also let an editor set `owner_id` to themselves. It was rejected in favor of column-level privileges (signed-in users can only write `title` and `content`) plus a trigger. A test covers it.
 2. **Every email visible to every user.** A "profiles readable by any signed-in user" policy is the easy default. It is the same class of bug I once found in my own project during a security audit (emails readable through the API), so profiles are visible only to collaborators. Tested.
 3. **Silent overwrites.** Plain autosave means last write wins, and two collaborators can lose each other's work without noticing. Added a `version` column with optimistic locking and a conflict banner. Tested at the database level.
-4. **RLS recursion.** Policies on `documents` and `document_shares` that query each other recurse; replaced with `SECURITY DEFINER` helper functions.
+4. **RLS recursion.** Policies on `documents` and `document_shares` that query each other recurse; `SECURITY DEFINER` helper functions avoid that.
 5. **TipTap v3 rejected for v2.** v3 changes how the React integration re-renders (toolbar state needs extra wiring). Under a four-hour limit, the stable v2 API was the lower-risk choice.
 6. **A misleading green build.** The first production build without environment variables "passed", but the bundler had removed almost the whole app as dead code behind the setup screen. Caught by inspecting the bundle; the configured build was checked to include everything and to load the `.docx` converter lazily.
 7. **Platform defaults not trusted.** The migration revokes default table privileges and grants only what is needed, including explicit `EXECUTE` on the policy helpers, so access does not depend on project-level settings.
